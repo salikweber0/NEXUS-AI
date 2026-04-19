@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS AI — Your All-In-One Intelligent Assistant</title>
+  <meta name="description" content="NEXUS AI is your all-in-one intelligent assistant powered by Groq, Gemini, Tavily, ElevenLabs and more. Chat, generate images, search the web, and much more." />
+  <meta name="keywords" content="AI assistant, artificial intelligence, chat AI, image generation, voice AI, web search AI, NEXUS AI, best AI assistant" />
+  <meta name="author" content="NEXUS AI" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nexus-ai-assistant.vercel.app/" />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexus-ai-assistant.vercel.app/" />
+  <meta property="og:title" content="NEXUS AI — Your All-In-One Intelligent Assistant" />
+  <meta property="og:description" content="Chat, generate images, search the web in real-time, upload files — all powered by cutting-edge AI models." />
+  <meta property="og:image" content="https://nexus-ai-assistant.vercel.app/og-image.png" />
+  <meta property="og:site_name" content="NEXUS AI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NEXUS AI — Your All-In-One Intelligent Assistant" />
+  <meta name="twitter:description" content="Chat, generate images, search the web in real-time — all powered by cutting-edge AI." />
+  <meta name="twitter:image" content="https://nexus-ai-assistant.vercel.app/og-image.png" />
+
+  <!-- Favicon inline SVG as data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230a0a0f'/><circle cx='32' cy='32' r='16' fill='none' stroke='%2300f5ff' stroke-width='2'/><circle cx='32' cy='32' r='6' fill='%2300f5ff'/><line x1='32' y1='8' x2='32' y2='16' stroke='%2300f5ff' stroke-width='2'/><line x1='32' y1='48' x2='32' y2='56' stroke='%2300f5ff' stroke-width='2'/><line x1='8' y1='32' x2='16' y2='32' stroke='%2300f5ff' stroke-width='2'/><line x1='48' y1='32' x2='56' y2='32' stroke='%2300f5ff' stroke-width='2'/></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Marked.js for markdown rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <!-- Highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Inline fix: ensure select options never look disabled */
+    select option { background: #1a1a26 !important; color: #e8e8f0 !important; }
+    select option:disabled { color: #555570 !important; opacity: 0.5; }
+    .model-select { background: #16161f; color: #e8e8f0; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="loader" class="loader-screen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <div class="logo-ring ring1"></div>
+        <div class="logo-ring ring2"></div>
+        <div class="logo-ring ring3"></div>
+        <div class="logo-core">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="6" fill="#00f5ff"/>
+            <path d="M14 2 L14 7 M14 21 L14 26 M2 14 L7 14 M21 14 L26 14" stroke="#00f5ff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5.5 5.5 L9 9 M19 19 L22.5 22.5 M5.5 22.5 L9 19 M19 9 L22.5 5.5" stroke="#00f5ff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="loader-text">
+        <span class="loader-brand">NEXUS</span>
+        <span class="loader-sub">Initializing AI Systems...</span>
+      </div>
+      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== NAME SCREEN ===== -->
+  <div id="nameScreen" class="name-screen hidden">
+    <div class="name-content">
+      <div class="name-logo">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#0a0a0f"/>
+          <circle cx="28" cy="28" r="14" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
+          <circle cx="28" cy="28" r="5" fill="#00f5ff"/>
+          <path d="M28 6 L28 14 M28 42 L28 50 M6 28 L14 28 M42 28 L50 28" stroke="#00f5ff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="name-title">Welcome to <span class="accent">NEXUS AI</span></h1>
+      <p class="name-tagline">Your all-in-one intelligent companion — powered by cutting-edge AI</p>
+      <div class="name-form">
+        <input type="text" id="nameInput" placeholder="Enter your name to begin..." maxlength="30" autocomplete="off" />
+        <button id="nameBtn" onclick="startChat()">
+          <span>Let's Go</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="name-features">
+        <span>🧠 Chat</span>
+        <span>🎨 Images</span>
+        <span>🔍 Research</span>
+        <span>🗣️ Voice</span>
+        <span>📂 Files</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APP ===== -->
+  <div id="mainApp" class="app hidden">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="6" fill="#00f5ff"/>
+            <path d="M14 2L14 7M14 21L14 26M2 14L7 14M21 14L26 14" stroke="#00f5ff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>NEXUS</span>
+        </div>
+        <button class="sidebar-close" onclick="toggleSidebar()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <button class="new-chat-btn" onclick="newChat()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        New Chat
+      </button>
+
+      <div class="history-section">
+        <p class="history-label">Chat History</p>
+        <div id="historyList" class="history-list">
+          <p class="history-empty">No conversations yet</p>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-chip" id="userChip">
+          <div class="user-avatar" id="userAvatar">U</div>
+          <span id="sidebarUserName">User</span>
+        </div>
+        <button class="settings-btn" onclick="openSettings()" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <button class="menu-btn" onclick="toggleSidebar()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-center">
+          <div class="model-selector-wrap">
+            <select id="modelSelect" class="model-select">
+              <option value="groq-llama">⚡ Groq Llama 3.3 (Fast)</option>
+              <option value="groq-mixtral">🔥 Groq Mixtral (Balanced)</option>
+              <option value="gemini-flash">✨ Gemini 2.0 Flash</option>
+              <option value="gemini-flash15">💫 Gemini 1.5 Flash</option>
+              <option value="gemini-pro">🌟 Gemini 1.5 Pro</option>
+            </select>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="voiceToggleBtn" onclick="toggleVoice()" title="Toggle Voice Output">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+          <div class="user-tag" id="topbarUser">User</div>
+        </div>
+      </header>
+
+      <!-- Chat Area -->
+      <div id="chatArea" class="chat-area">
+        <div id="welcomeScreen" class="welcome-screen">
+          <div class="welcome-logo">
+            <div class="welcome-rings">
+              <div class="wr1"></div><div class="wr2"></div>
+            </div>
+            <svg width="32" height="32" viewBox="0 0 28 28" fill="none" style="position:relative;z-index:2">
+              <circle cx="14" cy="14" r="6" fill="#00f5ff"/>
+              <path d="M14 2L14 7M14 21L14 26M2 14L7 14M21 14L26 14" stroke="#00f5ff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="welcome-title">Hello, <span id="welcomeName" class="accent">there</span>!</h2>
+          <p class="welcome-sub">Ask me anything — I can chat, generate images, search the web, analyze files, and more.</p>
+          <div class="suggestion-grid">
+            <button class="suggestion-chip" onclick="useSuggestion('Create a beautiful HTML form with validation')">📝 Create an HTML form</button>
+            <button class="suggestion-chip" onclick="useSuggestion('Generate an image of a futuristic city at night')">🎨 Generate an image</button>
+            <button class="suggestion-chip" onclick="useSuggestion('Search the web for latest AI news today')">🔍 Search web news</button>
+            <button class="suggestion-chip" onclick="useSuggestion('Write a Python script to scrape website data')">💻 Write Python code</button>
+            <button class="suggestion-chip" onclick="useSuggestion('Explain quantum computing in simple terms')">🧠 Explain a concept</button>
+            <button class="suggestion-chip" onclick="useSuggestion('Create a business plan for a startup idea')">📊 Business plan</button>
+          </div>
+        </div>
+        <div id="messagesContainer" class="messages-container"></div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-section">
+        <!-- File Preview -->
+        <div id="filePreview" class="file-preview hidden"></div>
+
+        <!-- Input Bar -->
+        <div class="input-bar">
+          <div class="input-tools">
+            <label for="fileUpload" class="tool-btn" title="Upload file/image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </label>
+            <input type="file" id="fileUpload" accept="image/*,.pdf,.txt,.js,.html,.css,.json,.csv,.md,.py" style="display:none" onchange="handleFileUpload(event)" multiple />
+
+            <button class="tool-btn" onclick="startVoiceInput()" id="voiceInputBtn" title="Voice input">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </button>
+
+            <button class="tool-btn" id="webSearchBtn" onclick="toggleWebSearch()" title="Toggle web search" data-active="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+
+            <button class="tool-btn" id="imageGenBtn" onclick="toggleImageMode()" title="Image generation mode" data-active="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </button>
+          </div>
+
+          <textarea
+            id="messageInput"
+            placeholder="Ask anything... (Shift+Enter for new line)"
+            rows="1"
+            onkeydown="handleInputKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+
+          <button id="sendBtn" class="send-btn" onclick="sendMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+
+        <p class="input-disclaimer">NEXUS AI can make mistakes. Verify important info.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===== SETTINGS MODAL ===== -->
+  <div id="settingsModal" class="modal-overlay hidden" onclick="closeSettings(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Settings</h3>
+        <button onclick="closeSettings()" class="modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-row">
+          <label>Your Name</label>
+          <input type="text" id="settingsName" placeholder="Your name" />
+        </div>
+        <div class="setting-row">
+          <label>Default Model</label>
+          <select id="settingsModel">
+            <option value="groq-llama">Groq Llama 3.3 (Fast)</option>
+            <option value="groq-mixtral">Groq Mixtral</option>
+            <option value="gemini-flash">Gemini 2.0 Flash</option>
+            <option value="gemini-flash15">Gemini 1.5 Flash</option>
+            <option value="gemini-pro">Gemini 1.5 Pro</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label>Voice Output</label>
+          <label class="toggle">
+            <input type="checkbox" id="settingsVoice" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Web Search by Default</label>
+          <label class="toggle">
+            <input type="checkbox" id="settingsSearch" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Theme</label>
+          <select id="settingsTheme" onchange="changeTheme(this.value)">
+            <option value="dark">Dark (Default)</option>
+            <option value="midnight">Midnight Blue</option>
+            <option value="forest">Forest</option>
+          </select>
+        </div>
+        <button class="modal-save-btn" onclick="saveSettings()">Save Settings</button>
+        <button class="modal-danger-btn" onclick="clearAllHistory()">Clear All History</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== IMAGE VIEWER MODAL ===== -->
+  <div id="imageModal" class="modal-overlay hidden" onclick="closeImageModal()">
+    <div class="image-modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close image-close-btn" onclick="closeImageModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <img id="imageModalSrc" src="" alt="Generated Image" />
+      <div class="image-modal-actions">
+        <button onclick="downloadModalImage()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
