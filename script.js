@@ -3,14 +3,14 @@
 // ============================================
 
 const KEYS = {
-  groq:       "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",
-  gemini:     "AIzaSyABiBtPD1lCeNioY1TlKNIF0bJ7ILtGAds",
-  together:   "tgp_v1_Hxmgazk0IgKGUXiYqBDkmOjm0gN-93kUQJDynl3B93E",
-  exa:        "f4933915-e904-42e9-9362-51f238f87214",
-  tavily:     "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",
-  elevenlabs: "sk_bfd64e9a4b6e45adfa507c6cfb35488a318935753028320a",
+  groq:       "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",
+  gemini:     "AIzaSyB54MNFsjNq34G8CmJUo1kPGQKNQNTPSK4",
+  together:   "tgp_v1_DV4m4e1C_eDT2YD3KypgyIWL5D8exaoFKPkxa5PY7io",
+  exa:        "66a24f97-482b-4b44-8fa2-177cadc83393",
+  tavily:     "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",
+  elevenlabs: "sk_d3606f6caa9e4f15960511cfe1c728cd590ca5264426baf7",
   stability:  "sk-zEvxPp4ldaAIT28TvEwPDD3FQ8ThEA5wBO3g8QqKDR2ltgBQ",
-  mem0:       "m0-x1vcd5sc1XAaCf3ElmNzzhFCKZkCTxX4EoueHJc0"
+  mem0:       "m0-N7ATOeoKOCvD5MzPDLryuYpRKYgFVtAy96UELSUT"
 };
 
 // ===== STATE =====
